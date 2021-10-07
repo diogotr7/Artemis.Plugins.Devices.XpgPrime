@@ -1,0 +1,10 @@
+{
+  "Guid": "685b8fc6-cb07-482d-85c4-97a6a465921a",
+  "Name": "Artemis.Plugins.Devices.XpgPrime",
+  "Description": "This is my awesome plugin",
+  "Author": "diogotr7",
+  "Website": null,
+  "Repository": null,
+  "Version": "1.0.0.0",
+  "Main": "Artemis.Plugins.Devices.XpgPrime.dll"
+}
