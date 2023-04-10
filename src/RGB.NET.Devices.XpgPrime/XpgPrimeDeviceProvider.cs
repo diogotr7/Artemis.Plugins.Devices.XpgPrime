@@ -9,7 +9,7 @@ namespace RGB.NET.Devices.XpgPrime
 {
     public class XpgPrimeDeviceProvider : AbstractRGBDeviceProvider
     {
-        private static XpgPrimeDeviceProvider _instance;
+        private static XpgPrimeDeviceProvider? _instance;
         public static XpgPrimeDeviceProvider Instance => _instance ?? new XpgPrimeDeviceProvider();
 
         public XpgPrimeDeviceProvider()

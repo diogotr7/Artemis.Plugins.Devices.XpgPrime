@@ -15,7 +15,7 @@ namespace RGB.NET.Devices.XpgPrime.Keyboard
             array = new byte[ARRAY_SIZE];
         }
 
-        protected override void Update(in ReadOnlySpan<(object key, Color color)> dataSet)
+        protected override bool Update(in ReadOnlySpan<(object key, Color color)> dataSet)
         {
             foreach (var (key, color) in dataSet)
             {
@@ -28,6 +28,7 @@ namespace RGB.NET.Devices.XpgPrime.Keyboard
             }
 
             _XpgPrimeSdk.UpdateDevice(array, array.Length);
+            return true;
         }
     }
 }
