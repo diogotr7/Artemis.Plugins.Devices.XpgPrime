@@ -2,28 +2,31 @@
 using Artemis.Core.Services;
 using RGB.NET.Devices.XpgPrime;
 using System.IO;
+using RGB.NET.Core;
 
 namespace Artemis.Plugins.Devices.XpgPrime
 {
     public class PluginDeviceProvider : DeviceProvider
     {
-        private readonly IRgbService _rgbService;
+        private readonly IDeviceService _deviceService;
 
-        public PluginDeviceProvider(IRgbService rgbService) : base(XpgPrimeDeviceProvider.Instance)
+        public PluginDeviceProvider(IDeviceService deviceService)
         {
-            _rgbService = rgbService;
+            _deviceService = deviceService;
         }
+
+        public override IRGBDeviceProvider RgbDeviceProvider => XpgPrimeDeviceProvider.Instance;
 
         public override void Enable()
         {
             XpgPrimeDeviceProvider.PossibleX64NativePaths.Add(Path.Combine(Plugin.Directory.FullName, "x64", "libxpgp_aurora.dll"));
 
-            _rgbService.AddDeviceProvider(RgbDeviceProvider);
+            _deviceService.AddDeviceProvider(this);
         }
 
         public override void Disable()
         {
-            _rgbService.RemoveDeviceProvider(RgbDeviceProvider);
+            _deviceService.RemoveDeviceProvider(this);
             RgbDeviceProvider.Dispose();
         }
     }
